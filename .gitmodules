@@ -1,6 +1,3 @@
-[submodule "nextjs-boilerplate"]
-	path = nextjs-boilerplate
-	url = git@github.com:tedckh/nextjs-boilerplate.git
 [submodule "react-native-boilerplate"]
 	path = react-native-boilerplate
 	url = git@github.com:tedckh/react-native-boilerplate.git
