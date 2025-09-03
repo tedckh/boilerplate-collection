@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# A script to clone the company-customized Next.js boilerplate.
+# A script to clone the monorepo boilerplate and initialize it as a new project.
 
 # Check that a project name was provided as an argument.
 if [ -z "$1" ]; then
@@ -10,18 +10,38 @@ if [ -z "$1" ]; then
 fi
 
 PROJECT_NAME=$1
-REPO_URL="git@github.com:tedckh/nextjs-boilerplate.git"
-BRANCH="company-customizations"
+REPO_URL="https://github.com/tedckh/nextjs-boilerplate.git"
+BRANCH="main"
 
-echo "Cloning the '$BRANCH' branch into a new project called '$PROJECT_NAME'..."
+echo "Cloning the monorepo boilerplate into '$PROJECT_NAME'..."
+git clone -b $BRANCH --depth 1 $REPO_URL $PROJECT_NAME
 
-git clone -b $BRANCH $REPO_URL $PROJECT_NAME
+cd $PROJECT_NAME
+
+ROOT_PKG_NAME="$PROJECT_NAME-monorepo"
+WEB_PKG_NAME="@$PROJECT_NAME/web"
+
+echo "Updating package names to '$ROOT_PKG_NAME' and '$WEB_PKG_NAME'..."
+
+# Update root package.json
+node -e "const fs = require('fs'); const pkg = require('./package.json'); pkg.name = '$ROOT_PKG_NAME'; fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));"
+
+# Update web app package.json
+node -e "const fs = require('fs'); const pkg = require('./apps/web/package.json'); pkg.name = '$WEB_PKG_NAME'; fs.writeFileSync('./apps/web/package.json', JSON.stringify(pkg, null, 2));"
+
+echo "Installing dependencies..."
+npm install
+
+echo "Initializing a new git repository..."
+rm -rf .git
+git init
+git add .
+git commit -m "Initial commit"
+
 
 echo ""
 echo "Success! Your new project is ready in the '$PROJECT_NAME' directory."
 echo ""
 echo "Next steps:"
 echo "  cd $PROJECT_NAME"
-echo "  # (Recommended) Detach from the boilerplate's history"
-echo "  rm -rf .git"
-echo "  git init"
+echo "  turbo dev"
