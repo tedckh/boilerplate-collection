@@ -2,6 +2,16 @@
 
 This repository serves as a collection of various project boilerplates, designed to kickstart development with different technologies. Each boilerplate is maintained as a Git submodule, allowing for independent development and easy integration into new projects.
 
+## Quick Start: Create a New Project
+
+To create a new project from the customized Next.js boilerplate, run this command in your terminal:
+
+```bash
+bash <(curl -sSL https://raw.githubusercontent.com/tedckh/boilerplate-collection/main/create-nextjs-project.sh) my-new-app
+```
+
+Replace `my-new-app` with your desired project name. This script will clone the customized boilerplate for you.
+
 ## Available Boilerplates
 
 *   **Next.js Boilerplate**: A Next.js project set up with TypeScript, ESLint, the App Router, and a `src/` directory (without Tailwind CSS).
