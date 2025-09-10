@@ -4,13 +4,13 @@ This repository serves as a collection of various project boilerplates, designed
 
 ## Quick Start: Create a New Project
 
-To create a new project from the customized Next.js boilerplate, run this command in your terminal:
+The recommended way to create a new project from the Next.js boilerplate is to use the dedicated CLI tool. Run the following command in your terminal:
 
 ```bash
-bash <(curl -sSL https://gist.github.com/tedckh/3deb662527fd5ab8eb22383642342a23/raw) my-new-app
+npx @tedckh/create-nextjs-boilerplate my-new-app
 ```
 
-Replace `my-new-app` with your desired project name. This script will clone the customized boilerplate for you.
+Replace `my-new-app` with your desired project name. The tool will automatically clone the boilerplate, update project names, and install all dependencies.
 
 ## Available Boilerplates
 
