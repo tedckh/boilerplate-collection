@@ -29,6 +29,9 @@ node -e "const fs = require('fs'); const pkg = require('./package.json'); pkg.na
 # Update web app package.json
 node -e "const fs = require('fs'); const pkg = require('./apps/web/package.json'); pkg.name = '$WEB_PKG_NAME'; fs.writeFileSync('./apps/web/package.json', JSON.stringify(pkg, null, 2));"
 
+# Update Dockerfile with new web package name
+sed -i '' "s|@tedckh/web|$WEB_PKG_NAME|g" apps/web/Dockerfile
+
 echo "Installing dependencies..."
 npm install
 
